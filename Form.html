@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <title>Feedback</title>
+  <style>
+    label {	float: left;
+			width: 100%;}
+
+	.title{
+		width: 10%;
+	}
+
+	.freeSwag{
+		width: 60%;
+	}
+    #container{
+        width: 700px;
+        margin: auto;
+        background-color: beige;
+    } 
+    main{
+          padding: 50px;
+    }
+	input[type=text],textarea,select {
+  		width: 100%;
+  		padding: 12px 20px;
+  		margin: 8px 0;
+  		box-sizing: border-box;
+	}
+	
+
+	input[type=submit], input[type=reset] {
+ 		background-color: #04AA6D;
+  		border: none;
+  		color: white;
+		width: 48%;
+  		padding: 16px 32px;
+  		text-decoration: none;
+  		margin: 4px 2px;
+  		cursor: pointer;
+	}
+
+	input[type=submit]:hover, input[type=reset]:hover {
+ 		background-color: green;
+	}
+
+	.error label {
+  		color: red;
+	}
+
+	.error-message{
+		display: none;
+		color: red;
+	}
+
+	.error .error-message {
+  		display: inline-block;
+		color: red;
+	}
+
+	#formData{
+		margin-top: 20px;
+		font-family: Arial, Helvetica, sans-serif;
+  		border-collapse: collapse;
+  		width: 100%;
+	}
+	#formData th {
+  		padding-top: 12px;
+  		padding-bottom: 12px;
+  		text-align: left;
+  		background-color: #04AA6D;
+  		color: white;	
+	}
+	#formData td, #formData th {
+  		border: 1px solid #ddd;
+  		padding: 8px;
+	}
+
+	#formData tr:nth-child(even){background-color: #f2f2f2;}
+
+	#formData tr:hover {background-color: #ddd;}	
+
+	.option_2 span, .option_1 span,.option_3 span,.option_4 span,.option_5 span{
+		display: block;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	
+	.option_1,.option_2,.option_3,.option_4,.option_5{
+		display: none;
+		margin: 20px;
+	}
+	.dropdown {
+		margin-top: 30px;
+	}
+  </style>
+ </head>
+ <body>
+ <div id="container">
+	 
+	 <main>
+	 <h2>Feeback</h2>
+	 <h3>Love something? Hate something? Let us know!</h3>
+		 Note : Fields marked with an asterisk(*) are mandatory
+		 <br><br>
+		 <form method = "post" id = "myForm" onsubmit ="return submit2(event)" action="new.html">
+			<div class="radio-group">
+				<label class="title">Title*:</label>
+				<input type="radio" name="title" id="miss" value="miss"/>Miss
+				<input type="radio" name="title" id="mr" value="mr"/>Mr.
+				<input type="radio" name="title" id="mrs" value="mrs"/>Mrs.
+				<span class="error-message" style="display:block"></span>
+				<br><br>
+			</div>			
+
+			<div>
+				<label for="firstName">First Name*:</label>
+				<input type="text" name="firstName" id="firstName" placeholder="First Name" oninput="validate(this)" onfocusout = "validate(this)"/>	
+				<span class="error-message"></span>
+				<br><br>
+			</div>
+			
+			<div>
+				<label for="lastName">Last Name*:</label>
+				<input type="text" name="lastName" id="lastName" placeholder="Last Name" oninput="validate(this)" onfocusout = "validate(this)"/>
+				<span class="error-message"></span>
+				<br><br>
+			</div>	
+
+			<div>
+				<label for="emailId">Email Id*:</label>
+				<input type="text" name="emailId" id="emailId" placeholder="yourname@domain.com"  oninput="validate(this)" onfocusout = "validate(this)"/>
+				<span class="error-message"></span>
+				<br><br>
+			</div>
+
+			<div>
+				<label for="phoneNumber">Phone Number*:</label>
+				<input type="text" name="phoneNumber" id="phoneNumber" placeholder="xxx-xxx-xxxx"  oninput="validate(this)" onfocusout = "validate(this)"/>
+				<span class="error-message"></span>
+				<br><br>	
+			</div>
+
+			
+
+			<div>
+				<label for="streetAddress1">Street Address 1*:</label>
+				<input type="text" name="streetAddress1" id="streetAddress1" placeholder="address" oninput="validate(this)" onfocusout = "validate(this)"/>
+				<span class="error-message"></span>
+				<br><br>
+			</div>
+			
+			<div>
+				<label for="streetAddress2">Street Address 2:</label>
+				<input type="text" name="streetAddress2" id="streetAddress2" placeholder="address" class="ignore"/>
+				<br><br>
+			</div>
+			
+			<div>
+				<label for="city">City*:</label>
+				<input type="text" name="city" id="city" placeholder="city"  oninput="validate(this)" onfocusout = "validate(this)"/>
+				<span class="error-message"></span>
+				<br><br>
+			</div>
+
+			<div>
+				<label for="state">State*:</label>
+				<input type="text" name="state" id="state" placeholder="state"  oninput="validate(this)" onfocusout = "validate(this)"/>
+				<span class="error-message"></span>
+				<br><br>				
+			</div>
+
+			<div>
+				<label for="zipcode">ZipCode*:</label>
+				<input type="text" name="zipcode" id="zipcode" placeholder="xxxxxx" oninput="validate(this)" onfocusout = "validate(this)"/>
+				<span class="error-message"></span>
+				<br><br>
+			</div>
+
+			<div class="checkbox-group">
+				<label for="source">How did you hear*:</label>
+				<br><br>
+				<input type='checkbox' name="source" value="facebook" /> Facebook
+				<input type='checkbox' name="source" value="google"/> Google
+				<input type='checkbox' name="source" value="yelp"/> Yelp 
+				<span class="error-message" style="display: block;"></span>
+				<br>
+			</div>
+			
+			<div>
+				<label for="comments">Comments*:</label>
+				<textarea name="text" id="comments" placeholder="Your comments" rows="5" cols="25" oninput="validate(this)" onfocusout = "validate(this)"></textarea>
+				<span class="error-message"></span>
+				<br><br>
+			</div>
+
+			<div>
+				<label class = "freeSwag" for="freeSwag">Would you like to get a free swag for providing the feedback : </label>
+				<input type="radio" name="freeSwag" id="yesFS" value="yes" checked onchange="hideDropDown(this)"/>Yes
+				<input type="radio" name="freeSwag" id="noFS" value="no" onchange="hideDropDown(this)"/>No
+			</div>
+
+			<div class="dropdown">
+				<label for="drinkDropDown">Drinks:</label>
+				<select id="drinkDropDown" name="drinkDropDown" onchange="changeCheckBoxDisplay(this)"> 
+					<option value="1">Masala Tea</option>
+					<option value="2">Soda</option>
+					<option value="3">Cold coffee</option>
+					<option value="4">Lassi</option>
+					<option value="5">Water</option>
+				</select>
+				<div class="option_1">
+					<label for="hotCoffeeOption">Select Masala tea size and add-ons:</label>
+					<span><input type='checkbox' name="hotCofee" value="largeCupHC"/> Large Cup(16oz) - 332cal - 8$ </span>
+					<span><input type='checkbox' name="hotCofee" value="smallCupHC"/>  Small Cup(8oz) - 200cal - 5$</span>
+					<span><input type='checkbox' name="hotCofee" value="biscuitHC"/> Biscuit - 100Cal - $2 </span>
+					<span><input type='checkbox' name="hotCofee" value="gingerHC"/> Ginger - 100Cal - $2 </span>
+					<span class="error-message" style="display: block;"></span>	
+				</div>
+				<div class="option_2">
+					<label for="sizeOption">Select Soda size and add-ons:</label>
+					<span><input type='checkbox' name="soda" value="largeCupS"/>  Large Soda(16oz) - 300cal - 8$ </span>
+					<span><input type='checkbox' name="soda" value="smallCupS"/> Small Soda(8oz) - 200cal - 5$</span>
+					<span><input type='checkbox' name="soda" value="masalaS"/> Masala - 100Cal - $2  </span>
+					<span><input type='checkbox' name="soda" value="classicS"/> Classic Syrup - $2 </span>
+					<span><input type='checkbox' name="soda" value="honeyS"/> Honey Blend - $3 </span>
+					<span class="error-message" style="display: block;"></span>	
+				</div>
+				<div class="option_3">
+					<label for="sizeOption">Select Cold coffee size and add-ons:</label>
+					<span><input type='checkbox' name="coldCoffee" value="largeCupLC"/>  Large Cup(16oz) - 332cal - 8$ </span>
+					<span><input type='checkbox' name="coldCoffee" value="smallCupLC"/> Small Cup(8oz) - 200cal - 5$</span>
+					<span><input type='checkbox' name="coldCoffee" value="biscuitLC"/> Biscuit - 100Cal - $2  </span>
+					<span><input type='checkbox' name="coldCoffee" value="caramelLC"/> Caramel Cream - $3 </span>
+					<span><input type='checkbox' name="coldCoffee" value="pumpinkLC"/> Pumpkin Spice Creme - $3 </span>
+					<span class="error-message" style="display: block;"></span>	
+				</div>
+				<div class="option_4">
+					<label for="sizeOption">Select lassi size and add-ons:</label>
+					<span><input type='checkbox' name="lassi" value="largeLa"/>  Large Cup(16oz) - 332cal - 8$ </span>
+					<span><input type='checkbox' name="lassi" value="smallLa"/> Small Cup(8oz) - 200cal - 5$</span>
+					<span><input type='checkbox' name="lassi" value="mangoLa"/> Mango - 100Cal - $2  </span>
+					<span><input type='checkbox' name="lassi" value="strawberryLa"/> Strawberry  - $3 </span>
+					<span><input type='checkbox' name="lassi" value="pineappleLa"/> Pineapple - $3 </span>
+					<span class="error-message" style="display: block;"></span>	
+				</div>
+				<div class="option_5">
+					<label for="sizeOption">Select Water size:</label>
+					<span><input type='checkbox' name="water" value="largeWa"/>  Large Cup(16oz)  - 8$ </span>
+					<span><input type='checkbox' name="water" value="smallWa"/> Small Cup(8oz)  - 5$</span>
+					<span class="error-message" style="display: block;"></span>	
+				</div>
+					
+			</div>
+			
+			
+			<input type="Submit" value ="Submit">
+			<input type="Reset" value ="Reset">
+			<br><br>
+		 </form>
+	 </main>
+ </div>
+ <table id="formData">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email Id</th>
+			<th>Phone Number</th>
+			<th>Street Address1</th>
+			<th>Street Address 2</th>
+			<th>City</th>
+			<th>State</th>
+			<th>ZipCode</th>
+			<th>Source</th>
+			<th>Comments</th>
+			<th>Free swag</th>
+			<th>Drink</th>
+		</tr>
+	</thead>
+	<tbody>
+
+	</tbody>
+ </table>
+
+<script src="myscripts.js">
+	
+ 
+</script>
+
+ </body>
+</html>
