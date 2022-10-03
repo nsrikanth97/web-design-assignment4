@@ -15,6 +15,7 @@ map.set('phoneNumber', 'Phone Number');
 map.set('streetAddress1', 'Address Line 1');
 map.set('comments', 'Comments');
 map.set('zipcode', 'Zip code');
+map.set('specialInstructions', 'Special Instructions');
 
 var drinkDropDownValue = document.getElementById("drinkDropDown").value;
 document.getElementsByClassName("option_" + drinkDropDownValue)[0]
@@ -23,6 +24,24 @@ document.getElementsByClassName("option_" + drinkDropDownValue)[0]
 if(document.getElementById("formData").rows.length ==1){
     document.getElementById("formData").style.display = "none";
 }
+
+document.querySelectorAll('input[name="hotCofee"]').forEach(el => {
+    el.addEventListener('change', displaySpecialInstructions)
+});
+document.querySelectorAll('input[name="soda"]').forEach(el => {
+    el.addEventListener('change', displaySpecialInstructions)
+});
+document.querySelectorAll('input[name="coldCoffee"]').forEach(el => {
+    el.addEventListener('change', displaySpecialInstructions)
+});
+document.querySelectorAll('input[name="lassi"]').forEach(el => {
+    el.addEventListener('change', displaySpecialInstructions)
+});
+document.querySelectorAll('input[name="water"]').forEach(el => {
+    el.addEventListener('change', displaySpecialInstructions)
+});
+
+
 
 function validate(el){
     var elementId = el.id;
@@ -53,7 +72,7 @@ function validateElementById(el){
         el.style.border = "2px solid red";
         el.style.background = "red";
         el.style.borderRadius = "3px";
-        parentElement.setAttribute('class','error');
+        parentElement.setAttribute('class',parentElement.className ? parentElement.className +' error' : 'error');
         parentElement.getElementsByTagName('span')[0]
         .innerHTML = map.get(el.id) + " is required";
         return;
@@ -134,6 +153,13 @@ function validateElementById(el){
             el.style.borderRadius = "5px";
             parentElement.classList.remove("error"); 
             break;
+        case "specialInstructions":
+            el.style.border = "";
+            el.style.background = "white";
+            el.style.border = "5px solid green";
+            el.style.borderRadius = "5px";
+            parentElement.classList.remove("error"); 
+            break;
 
     }
 }
@@ -148,9 +174,10 @@ function submit2(event){
         if(el.checked)
             selected = true;
     });
+    spanErrorMessage =  radioGroup.querySelectorAll("span");
+    
     if(!selected){
-        radioGroup.setAttribute('class' , 'error');
-        spanErrorMessage =  radioGroup.querySelectorAll("span");
+        radioGroup.setAttribute('class' , radioGroup.className ? radioGroup.className + ' error' : 'error');
         spanErrorMessage[0].innerHTML = "Please select title";
         alert("Some fields are either missing/having incorrect data in the form , Please Rectify them and submit again");
         document.querySelectorAll("input[type=text]:not(.ignore)")
@@ -158,18 +185,20 @@ function submit2(event){
         document.querySelectorAll("textarea")
         .forEach(el => validate(el));
         return;
+    }else{
+        radioGroup.classList.remove('error');
+        spanErrorMessage[0].innerHTML = '';
     }
     selected = false;
     var checkboxGroup = document.getElementsByClassName("checkbox-group")[0];
     var inputListCheckBox = checkboxGroup.querySelectorAll("input");
-    var spanErrorMessage2;
+    var spanErrorMessage2 =   checkboxGroup.querySelectorAll("span");
     inputListCheckBox.forEach(el => {
         if(el.checked)
             selected = true;
     });
     if(!selected){
         checkboxGroup.setAttribute('class' , checkboxGroup.className ? checkboxGroup.className +' error' : 'error');
-        spanErrorMessage2 =  checkboxGroup.querySelectorAll("span");
         spanErrorMessage2[0].innerHTML = "Please select one of the option"; 
         alert("Some fields are either missing/having incorrect data in the form , Please Rectify them and submit again");
         document.querySelectorAll("input[type=text]:not(.ignore)")
@@ -177,6 +206,9 @@ function submit2(event){
         document.querySelectorAll("textarea")
         .forEach(el => validate(el));
         return;
+    }else{
+        checkboxGroup.classList.remove('error');
+        spanErrorMessage2[0].innerHTML = '';
     }
 
     document.querySelectorAll("input[type=text]:not(.ignore)")
@@ -199,6 +231,8 @@ function submit2(event){
     
     myForm.reset();
     hideDropDown(document.querySelector('input[name="freeSwag"]:checked'));
+    changeCheckBoxDisplay(document.querySelector('select[name="drinkDropDown"]'));
+    displaySpecialInstructions();
     return false;
 }
 
@@ -225,12 +259,25 @@ function copyFormData(myForm){
     var freeSwag = document.querySelector('input[name="freeSwag"]:checked').value;
     newCol = newRow.insertCell();
     newCol.innerHTML = freeSwag;
-    var socialMedia =   document.querySelector('input[name="source"]:checked');
     if(freeSwag == 'yes'){
         var dropDown = document.getElementById('drinkDropDown');
         newCol = newRow.insertCell();
         newCol.innerHTML = dropDown.options[dropDown.selectedIndex].text;  
+        var checkboxList = document.querySelectorAll(".option_" + dropDown.value + " input[type=checkbox]");
+        var specialInstructions = document.getElementById('specialInstructions');
+        var selected = false;
+        checkboxList.forEach(el => {
+            console.log(el.checked)
+            if(el.checked)
+                selected = true;
+        });
+        if(selected){
+            newCol = newRow.insertCell();
+            newCol.innerHTML = specialInstructions.value;
+        }
     }
+   
+
 }
 
 function changeCheckBoxDisplay(el){
@@ -253,4 +300,23 @@ function hideDropDown(el){
     }
 }
 
+
+function displaySpecialInstructions(){
+    var drinkDropDownValue = document.getElementById('drinkDropDown').value;
+    var checkboxList = document.querySelectorAll(".option_" + drinkDropDownValue + " input[type=checkbox]");
+    var specialInstructions = document.getElementsByClassName('special-instructions')[0];
+    var selected = false;
+    checkboxList.forEach(el => {
+        console.log(el.checked)
+        if(el.checked)
+            selected = true;
+    });
+    console.log(selected);
+    console.log(specialInstructions);   
+    if(selected){
+        specialInstructions.style.display = "block";
+    }else{
+        specialInstructions.style.display = "none";
+    }
+}
 

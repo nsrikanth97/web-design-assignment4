@@ -86,13 +86,14 @@
 		margin-bottom: 5px;
 	}
 	
-	.option_1,.option_2,.option_3,.option_4,.option_5{
+	.option_1,.option_2,.option_3,.option_4,.option_5,.special-instructions{
 		display: none;
 		margin: 20px;
 	}
 	.dropdown {
 		margin-top: 30px;
 	}
+
   </style>
  </head>
  <body>
@@ -211,7 +212,7 @@
 				</select>
 				<div class="option_1">
 					<label for="hotCoffeeOption">Select Masala tea size and add-ons:</label>
-					<span><input type='checkbox' name="hotCofee" value="largeCupHC"/> Large Cup(16oz) - 332cal - 8$ </span>
+					<span><input type='checkbox' name="hotCofee" value="largeCupHC" /> Large Cup(16oz) - 332cal - 8$ </span>
 					<span><input type='checkbox' name="hotCofee" value="smallCupHC"/>  Small Cup(8oz) - 200cal - 5$</span>
 					<span><input type='checkbox' name="hotCofee" value="biscuitHC"/> Biscuit - 100Cal - $2 </span>
 					<span><input type='checkbox' name="hotCofee" value="gingerHC"/> Ginger - 100Cal - $2 </span>
@@ -250,7 +251,11 @@
 					<span><input type='checkbox' name="water" value="smallWa"/> Small Cup(8oz)  - 5$</span>
 					<span class="error-message" style="display: block;"></span>	
 				</div>
-					
+				<div class="special-instructions">
+					<label for="comments">Provide special instructions*:</label>
+					<textarea name="text" id="specialInstructions" placeholder="special instructions" rows="2" cols="25" oninput="validate(this)" onfocusout = "validate(this)"></textarea>	
+					<span class="error-message"></span>
+				</div>	
 			</div>
 			
 			
@@ -277,6 +282,7 @@
 			<th>Comments</th>
 			<th>Free swag</th>
 			<th>Drink</th>
+			<th>Special Instr</th>
 		</tr>
 	</thead>
 	<tbody>
